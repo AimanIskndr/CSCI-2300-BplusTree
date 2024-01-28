@@ -64,70 +64,6 @@ public class BplusTree {
 			}
 		}
 	}
-    /* 
-	// Method to shift a level in the B-tree during insertion
-	void shiftLevel(int num, Node current, Node child) {
-		if (current.size < degree) {
-			int i = 0;
-
-			while (num > current.elements.get(i) && i < current.size)
-				i++;
-
-			for (int j = current.size; j > i; j--)
-				current.elements[j] = current.elements[j - 1];
-
-			for (int j = current.size + 1; j > i + 1; j--)
-				current.child[j] = current.child[j - 1];
-
-			current.elements.get(i) = num;
-			current.size++;
-			current.child[i + 1] = child;
-		} else {
-			Node newInternal = new Node();
-			int[] tempelements = new int[degree + 1];
-			Node[] tempchild = new Node[degree + 2];
-
-			for (int i = 0; i < degree; i++)
-				tempelements[i] = current.elements.get(i);
-
-			for (int i = 0; i < degree + 1; i++)
-				tempchild[i] = current.child[i];
-
-			int i = 0, j;
-			while (num > tempelements[i] && i < degree)
-				i++;
-
-			for (j = degree + 1; j > i; j--)
-				tempelements[j] = tempelements[j - 1];
-
-			tempelements[i] = num;
-			for (j = degree + 2; j > i + 1; j--)
-				tempchild[j] = tempchild[j - 1];
-
-			tempchild[i + 1] = child;
-			newInternal.setLeaf(false);
-			current.size = (degree + 1) / 2;
-
-			newInternal.size = degree - (degree + 1) / 2;
-
-			for (i = 0, j = current.size + 1; i < newInternal.size; i++, j++)
-				newInternal.elements[i] = tempelements[j];
-
-			for (i = 0, j = current.size + 1; i < newInternal.size + 1; i++, j++)
-				newInternal.child[i] = tempchild[j];
-
-			if (current == root) {
-				Node newRoot = new Node();
-				newRoot.elements[0] = current.elements[current.size];
-				newRoot.child[0] = current;
-				newRoot.child[1] = newInternal;
-				newRoot.setLeaf(false);
-				newRoot.size = 1;
-				root = newRoot;
-			} else
-				shiftLevel(current.elements[current.size], current.findParent(), newInternal);
-		}
-	}*/
 
     void remove(int num) {
         
@@ -186,7 +122,6 @@ public class BplusTree {
         }
     }
     
-
     public void displayTree() {
         if (root != null) {
             Queue<Node> queue = new LinkedList<>();
