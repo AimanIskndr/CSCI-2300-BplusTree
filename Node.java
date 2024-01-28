@@ -49,7 +49,8 @@ public class Node {
     }
 
     void remove(int key) {
-        elements.remove(key);
-        size = elements.size();
+        elements.remove(Integer.valueOf(key));
+        size--;
+        Collections.sort(elements);
     }
 }
