@@ -3,7 +3,7 @@ import java.util.Collections;
 
 public class Node {
 
-    private Node parent = null;
+    Node parent = null;
     Node right = null;
     Node left = null;
     public ArrayList<Integer> elements;
