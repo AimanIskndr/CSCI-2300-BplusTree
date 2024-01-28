@@ -26,8 +26,7 @@ public class BplusTree {
 
 			while (!current.isLeaf()) {
 				int j;
-                for(j = 0; j < current.size && num >= current.elements.get(j); j++)
-                System.out.println("j: " + j);
+                for(j = 0; j < current.size && num >= current.elements.get(j); j++) {}
                 current = current.child.get(j);
 			}
 
@@ -130,6 +129,10 @@ public class BplusTree {
 
     void remove(int num) {
         
+        Node pos = find(num);
+        
+        if(pos == null) return;
+        pos.remove(num);
     }
 
     Node find(int num) {
@@ -141,8 +144,7 @@ public class BplusTree {
             Node current = root;
             while (!current.isLeaf()) {
                 int j;
-                for(j = 0; j < current.size && num >= current.elements.get(j); j++)
-                System.out.println("j: " + j);
+                for (j = 0; j < current.size && num >= current.elements.get(j); j++) {}
                 current = current.child.get(j);
             }
  
