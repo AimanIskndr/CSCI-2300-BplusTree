@@ -23,5 +23,14 @@ public class Main {
             tree.displayTree();
             System.out.println();
         }
+
+        Arrays.sort(tc);
+
+        for(int i = 0; i < tc.length; i++){
+            System.out.printf("Remove(%d): %n", tc[i]);
+            tree.remove(tc[i]);
+            tree.displayTree();
+            System.out.println();
+        }
     }
 }
