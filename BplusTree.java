@@ -54,6 +54,8 @@ public class BplusTree {
                     root.size = 1;
                     newLeaf.size = newLeafSize;
                     current.size = current.elements.size();
+                    newLeaf.parent = newRoot;
+                    current.parent = newRoot;
                 }
 
 			    else {
@@ -133,6 +135,32 @@ public class BplusTree {
         
         if(pos == null) return;
         pos.remove(num);
+
+        if(pos.elements.size() < degree / 2){
+            if(pos.right != null && pos.right.elements.size() > degree / 2){
+                System.out.println("Borrow Right");
+                pos.elements.add(pos.right.elements.get(0));
+                pos.right.elements.remove(0);
+                pos.right.size = pos.right.elements.size();
+                pos.parent.elements.set(pos.parent.findKeyIndex(num), pos.right.elements.get(0));
+            }
+
+            else if(pos.left != null && pos.left.elements.size() > degree / 2){
+                System.out.println("Borrow Left");
+                pos.elements.add(pos.left.elements.get(pos.size - 1));
+                pos.left.elements.remove(pos.size - 1);
+                pos.left.size = pos.left.elements.size();
+                pos.parent.elements.set(pos.parent.findKeyIndex(num), pos.elements.get(0));
+            }
+
+            else if(pos.right != null){
+                System.out.println("Merge");
+                pos.elements.addAll(pos.right.elements);
+                pos.right = pos.right.right;
+                pos.size = pos.elements.size();
+                root = pos;
+            }
+        }
     }
 
     Node find(int num) {
